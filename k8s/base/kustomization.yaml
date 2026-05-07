@@ -12,6 +12,6 @@ resources:
   - frontend.yaml
   - ingress.yaml
 
-commonLabels:
+labels:
   app.kubernetes.io/part-of: production-app
   app.kubernetes.io/managed-by: argocd
