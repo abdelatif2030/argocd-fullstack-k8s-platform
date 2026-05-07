@@ -464,25 +464,18 @@ Security – OPA/Gatekeeper policies, secret encryption with KMS
 
 Service Mesh – Istio or Linkerd for advanced traffic control
 
-
+# Quick status check
+kubectl get nodes; kubectl get pods -n production-app; kubectl get applications -n argocd
 
 👨‍💻 Author
 
 DevOps Full Stack Project
+DEVOPS engineer Abdelatef Mohamed
 
 Kubernetes • CI/CD • GitOps • Cloud Infrastructure
 
 
 
-Built as a hands‑on demonstration of modern DevOps practices.
-
-For questions or contributions, feel free to open an issue or pull request.
-
-
-
-⭐ Result
-
-A complete production‑grade DevOps system running locally using:
 
 
 
