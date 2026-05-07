@@ -1,0 +1,59 @@
+🚀 Start Everything (run these in order)
+1 — Set kubectl context:
+powershellkubectl config use-context kind-production-cluster
+2 — Check cluster is up:
+powershellkubectl get nodes
+kubectl get pods -n production-app
+kubectl get pods -n argocd
+3 — If cluster is gone (after PC restart), rebuild everything:
+powershellcd G:\ABDELLATIF\DEVOPS-PROJECTS\production-app
+.\scripts\setup.ps1
+4 — Start port-forwards (run each in a separate PowerShell window):
+powershellkubectl port-forward svc/frontend -n production-app 3002:80
+kubectl port-forward svc/backend -n production-app 3001:3000
+kubectl port-forward svc/argocd-server -n argocd 8080:80
+5 — Get ArgoCD password:
+powershellkubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | ForEach-Object { [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($_)) }
+
+🌐 Access URLs
+ServiceURLLoginK8s Dashboardhttp://localhost:3002admin / adminBackend APIhttp://localhost:3001/health—ArgoCDhttp://localhost:8080admin / (from step 5)
+
+🔍 Daily Health Checks
+powershellkubectl get pods -n production-app
+kubectl get pods -n argocd
+kubectl get hpa -n production-app
+kubectl top nodes
+kubectl top pods -n production-app
+kubectl get application -n argocd
+
+🔄 Deploy New Changes (GitOps)
+powershellgit add .
+git commit -m "your message"
+git push origin main
+# ArgoCD auto-syncs within 3 minutes
+Force sync manually:
+powershell# In ArgoCD UI → click SYNC button
+# Or check status:
+kubectl get application production-root -n argocd -o jsonpath="{.status.sync.status}"
+
+🛠️ Troubleshooting
+powershell# Pod logs
+kubectl logs -f deployment/backend -n production-app
+kubectl logs -f deployment/frontend -n production-app
+
+# Restart a deployment
+kubectl rollout restart deployment/backend -n production-app
+kubectl rollout restart deployment/frontend -n production-app
+
+# Check HPA
+kubectl describe hpa backend-hpa -n production-app
+
+# Check ingress
+kubectl get ingress -n production-app
+
+🧹 Cleanup
+powershell# Delete everything
+kind delete cluster --name production-cluster
+
+# Delete only app (keep cluster)
+kubectl delete namespace production-app
