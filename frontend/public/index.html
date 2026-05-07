@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- ================= SEO ================= -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Production App | DevOps Platform</title>
+    <meta name="description" content="Production-ready DevOps application with CI/CD, Kubernetes, and cloud deployment." />
+    <meta name="keywords" content="DevOps, Kubernetes, ArgoCD, CI/CD, Docker, Cloud" />
+    <meta name="author" content="DevOps Team" />
+
+    <!-- ================= FAVICON ================= -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <!-- ================= THEME ================= -->
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- ================= OPEN GRAPH ================= -->
+    <meta property="og:title" content="Production App" />
+    <meta property="og:description" content="Modern DevOps production system with Kubernetes & CI/CD" />
+    <meta property="og:type" content="website" />
+
+    <!-- ================= PERFORMANCE ================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ================= FONT ================= -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- React root -->
+    <div id="root"></div>
+
+    <!-- ================= LOADING SCREEN (optional UX improvement) ================= -->
+    <style>
+      #loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f172a;
+        color: white;
+        font-family: Inter, sans-serif;
+        z-index: 9999;
+      }
+    </style>
+
+    <div id="loader">Loading Production App...</div>
+
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        if (loader) loader.remove();
+      });
+    </script>
+  </body>
+</html>

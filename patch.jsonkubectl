@@ -1,0 +1,1 @@
+{"spec":{"type":"NodePort"}}  patch svc argocd-server -n argocd --type=merge -p patch.json
